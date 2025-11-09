@@ -19,25 +19,32 @@ Setiap kali pengguna mengetik kata kunci baru, aplikasi mem-filter ulang seluruh
 
 ---
 
-## 2. Cara React Query Mengelola Cache
-React Query otomatis:
-- Menyimpan hasil query berdasarkan `queryKey`.
-- Mengembalikan data dari cache bila `queryKey` sama.
-- Memperbarui cache saat data berubah (revalidate).
-- Menghapus cache lama berdasarkan `staleTime`.
+## ⚙️ Cara React Query Mengelola Cache
+
+React Query secara otomatis menyimpan hasil query di **in-memory cache** berdasarkan key unik.  
+Jika query dengan key yang sama dipanggil kembali:
+- React Query **langsung mengambil data dari cache**, bukan fetch ulang.
+- Data tetap valid hingga masa hidup (`staleTime`) berakhir atau dilakukan invalidasi manual.  
+- Dengan ini, **tidak ada request ulang ke server** dan **render lebih cepat**.
 
 ---
 
-## 3. Keuntungan React Query dibanding Custom Cache
-| Custom Cache (Map/localStorage) | React Query |
-|----------------------------------|--------------|
-| Harus buat logika cache sendiri. | Cache otomatis & efisien. |
-| Tidak ada invalidation otomatis. | Ada revalidate & TTL bawaan. |
-| Tidak sinkron antar komponen. | Sinkron antar komponen otomatis. |
+## 💡 Keuntungan Menggunakan React Query Dibanding Custom Cache
+
+| React Query | Custom Cache (Map / localStorage) |
+|--------------|-----------------------------------|
+| Otomatis caching, refetch, invalidasi | Harus dibuat manual |
+| Bisa atur `staleTime`, `cacheTime`, refetch otomatis | Harus kelola waktu dan invalidasi sendiri |
+| Sinkron dengan API / Promise | Perlu tambahan useEffect & useState |
+| Lebih efisien, minim bug | Rentan error dan sulit dipelihara |
 
 ---
 
-## 4. Kesimpulan
-Menggunakan cache (React Query / localStorage) **meningkatkan performa aplikasi**,  
-karena data tidak selalu difilter ulang.  
-React Query lebih baik karena memiliki mekanisme cache otomatis, validasi data, dan optimasi render.
+Penggunaan **React Query** maupun **localStorage caching** secara signifikan membuat aplikasi **lebih cepat dan efisien**.  
+Data pencarian tidak perlu dihitung ulang, sehingga:
+- **Beban CPU berkurang**
+- **Render time menurun**
+- **Pengalaman pengguna meningkat**
+
+Cache membantu mempertahankan hasil sementara di memori, sementara localStorage menjaga persistensi setelah refresh.  
+Kombinasi keduanya memberikan performa optimal untuk aplikasi Point of Sales (POS) berbasis React.
