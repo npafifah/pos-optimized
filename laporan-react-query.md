@@ -11,6 +11,7 @@
 📸 **Screenshot Network Tab:** menunjukkan “(memory cache)” pada pencarian kedua. 
 ![Network Cache](./public/screenshots/network-cache.png)
 📸 **Screenshot Profiler Tab:** render time menurun drastis setelah cache aktif.
+![Profiler Cache](./public/screenshots/profiler-cache.png)
 
 ---
 
