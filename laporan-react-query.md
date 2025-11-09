@@ -1,12 +1,12 @@
 # Laporan React Query – Optimasi Cache POS
 
 ## 1. Perbandingan Waktu Respons
-- Sebelum React Query: filtering dilakukan manual pada 10.000 produk.
-  - Rerender terjadi tiap input berubah.
-  - Waktu respons ± 150–250 ms.
-- Sesudah React Query: data pencarian disimpan di cache.
-  - Jika keyword sama, data diambil langsung dari cache.
-  - Waktu respons turun menjadi < 20 ms.
+      Sebelum menggunakan React Query, proses pencarian produk masih memakai state dan custom cache (Map/localStorage). Setiap perubahan input menyebabkan filter ulang terhadap 10 000 data produk.
+•	Sebelum React Query: rerender & filter ulang terjadi di setiap ketikan, waktu respons ± 150 – 250 ms.
+•	Sesudah React Query (cache aktif): hasil pencarian yang sama diambil langsung dari cache React Query, waktu respons turun jadi < 20 ms.
+   ->	Network (Cache Hit)
+      Menunjukkan hasil pencarian kedua tidak mengirim request baru ke jaringan → data diambil dari cache memori React Query.
+
 
 📸 **Screenshot Network Tab:** menunjukkan “(memory cache)” pada pencarian kedua. 
 ![Network Cache](./public/screenshots/network-cache.png)
