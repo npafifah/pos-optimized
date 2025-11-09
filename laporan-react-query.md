@@ -8,7 +8,8 @@
   - Jika keyword sama, data diambil langsung dari cache.
   - Waktu respons turun menjadi < 20 ms.
 
-📸 **Screenshot Network Tab:** menunjukkan “(memory cache)” pada pencarian kedua.  
+📸 **Screenshot Network Tab:** menunjukkan “(memory cache)” pada pencarian kedua. 
+![Network Cache](./public/screenshots/network-cache.png)
 📸 **Screenshot Profiler Tab:** render time menurun drastis setelah cache aktif.
 
 ---
